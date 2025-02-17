@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FEYNMAN | Secure the Future</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ========================================================= */
+      /*                      GLOBAL STYLES                        */
+      /* ========================================================= */
+      body {
+        background-color: #f8f8fa; /* Softer, slightly warmer background */
+        color: #222; /* Deeper, richer text color */
+        font-family: "Poppins", sans-serif; /* Modern, clean sans-serif */
+        font-weight: 400; /* Default to regular weight */
+        overflow-x: hidden;
+        line-height: 1.7; /* Slightly tighter line-height for modern feel */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      }
+
+      /* Import Poppins Font from Google Fonts - Add this to your <head> section of HTML */
+      /* <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> */
+      /* <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet"> */
+
+      .bebas-neue {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 0.12em; /* Slightly increased letter-spacing for impact */
+        font-weight: 300; /* Keep it light */
+      }
+
+      .container-tight {
+        max-width: 1280px; /* Slightly wider for modern screens */
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 2.5rem; /* A bit more padding for spacious feel */
+        padding-right: 2.5rem;
+      }
+
+      .section-padding {
+        padding-top: 12rem; /* Increased section padding */
+        padding-bottom: 12rem;
+      }
+
+      /* ========================================================= */
+      /*                      BACKGROUND GIF                        */
+      /* ========================================================= */
+      .gif-bg {
+        position: fixed; /* Fixed position for full viewport coverage */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2; /* Behind lines-bg and content */
+        overflow: hidden; /* Hide scrollbars if GIF is larger than viewport */
+      }
+
+      .gif-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Cover full width */
+        height: 100%; /* Cover full height */
+        background-image: url("../fluids/subtle-circuit-pattern.gif"); /* **REPLACE WITH A SUBTLE, HIGH-QUALITY PATTERN GIF** */
+        background-size: cover; /* Cover the entire viewport */
+        background-position: center; /* Center the GIF */
+        opacity: 0.08; /* Even more subtle GIF overlay - almost a texture */
+        mix-blend-mode: multiply; /* Blend the GIF subtly with background color */
+      }
+
+      /* ========================================================= */
+      /*                      BACKGROUND LINES                     */
+      /* ========================================================= */
+      .lines-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Behind content but above GIF */
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.02) 0px,
+            /* Slightly darker lines */ rgba(0, 0, 0, 0.02) 1px,
+            transparent 1px,
+            transparent 8px /* Slightly wider spacing */
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.02) 0px,
+            rgba(0, 0, 0, 0.02) 1px,
+            transparent 1px,
+            transparent 8px
+          );
+        pointer-events: none;
+      }
+
+      /* ========================================================= */
+      /*              LUXURIOUS HERO TEXT ANIMATION                */
+      /* ========================================================= */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px); /* Slightly larger translateY */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4.5vw; /* Slightly reduced font size */
+        line-height: 0.95; /* Adjusted line-height */
+        font-weight: lighter; /* Slightly bolder weight */
+        letter-spacing: 0.1em; /* Re-emphasize letter-spacing */
+        color: #222; /* Match body text color */
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle text shadow for depth */
+        animation: fadeInUp 1.2s ease-out 0.3s backwards; /* Smoother, slightly delayed animation */
+      }
+
+      .hero-subtitle {
+        font-size: 1.6rem; /* Slightly larger subtitle */
+        color: #555; /* Muted subtitle color */
+        font-weight: 500; /* Medium weight for subtitle */
+        opacity: 0.9; /* Slightly reduced opacity */
+        animation: fadeInUp 1.2s ease-out 0.5s backwards; /* Staggered animation */
+      }
+
+      .hero-divider {
+        width: 50px; /* Slightly wider divider */
+        height: 2px; /* Slightly thicker divider */
+        background-color: #aaa; /* Muted divider color */
+        margin-top: 2.5rem; /* Increased top margin */
+        margin-bottom: 3rem; /* Increased bottom margin */
+        opacity: 0.6; /* Reduced opacity for subtlety */
+        animation: fadeInUp 1.2s ease-out 0.7s backwards; /* Staggered animation */
+      }
+
+      /* ========================================================= */
+      /*                       NAVIGATION - LUXURIOUS              */
+      /* ========================================================= */
+      .luxurious-nav {
+        position: fixed; /* Fixed nav */
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.5); /* 50% Transparent white */
+        backdrop-filter: blur(20px); /* Stronger blur for glass effect */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Slightly darker, more defined border */
+        padding-top: 0.5rem; /* Increased padding */
+        padding-bottom: 0.1rem;
+        z-index: 100; /* Higher z-index for always on top */
+        transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); /* Softer, wider shadow */
+      }
+
+      .luxurious-nav:hover,
+      .luxurious-nav.nav-scrolled {
+        /* Class for scrolled state */
+        background: rgba(
+          255,
+          255,
+          255,
+          0.7
+        ); /* Slightly less transparent on hover/scroll */
+        backdrop-filter: blur(25px); /* Slightly more blur on hover/scroll */
+        border-bottom-color: rgba(
+          0,
+          0,
+          0,
+          0.15
+        ); /* Darker border on hover/scroll */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06); /* Increased shadow on hover/scroll */
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 2rem; /* Adjusted padding to be consistent */
+        padding-right: 2rem;
+        max-width: 1440px; /* Example max-width for wider screens */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (min-width: 1440px) {
+        .nav-container {
+          padding-left: 2.5rem; /* Revert to original for very wide screens */
+          padding-right: 2.5rem;
+        }
+      }
+
+      .nav-logo {
+        font-size: 1.5rem; /* Even larger logo for prominence */
+        font-weight: lighter; /* Bolder logo font weight */
+        color: #1a1a1a; /* Deeper, richer logo color */
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+        letter-spacing: -0.02em; /* Slightly tighter letter spacing for logo */
+      }
+
+      .nav-logo:hover {
+        color: #2a2a2a; /* Slightly darker on hover */
+      }
+
+      /* Mobile Menu Button */
+      .nav-mobile-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px; /* Larger mobile button */
+        height: 48px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        outline: none;
+        transition: transform 0.3s ease-in-out; /* Button transform transition */
+      }
+
+      .nav-mobile-button:hover {
+        transform: scale(1.1); /* Subtle scale up on hover */
+      }
+
+      @media (min-width: 1056px) {
+        .nav-mobile-button {
+          display: none; /* Hide on desktop */
+        }
+      }
+
+      .nav-mobile-icon {
+        width: 38px;
+        height: 28px;
+        stroke: #555; /* Slightly lighter grey - was #333 */
+        stroke-width: 2.5;
+        fill: none;
+        transition: stroke 0.3s ease-in-out;
+      }
+
+      #mobile-menu-button .line {
+        width: 100%;
+        height: 1.05px;
+        background-color: #000000;
+        transition: all 0.5s ease-in-out; /* Smoother animation */
+      }
+
+      .nav-mobile-button:hover .nav-mobile-icon {
+        stroke: #666; /* Slightly lighter on hover - was #444 */
+      }
+
+      /* Desktop Navigation Links */
+      .nav-links-desktop {
+        display: none; /* Hidden on mobile */
+      }
+
+      @media (min-width: 1056px) {
+        .nav-links-desktop {
+          display: flex; /* Show on desktop */
+          align-items: center;
+          gap: 3.5rem; /* Wider gap for desktop links */
+        }
+      }
+
+      .nav-link {
+        font-family: "Poppins", sans-serif; /* Modern, clean font */
+        font-size: 1.1rem; /* Slightly larger link text */
+        letter-spacing: 0.01em; /* Refined letter spacing */
+        color: #444; /* Deeper, more elegant link color */
+        font-weight: 500;
+        text-decoration: none;
+        position: relative;
+        padding-bottom: 0.4rem; /* More padding for underline space */
+        transition: color 0.3s ease-in-out, padding-bottom 0.3s ease-in-out; /* Smooth transitions */
+      }
+
+      .nav-link:hover {
+        color: #222; /* Darker on hover */
+        padding-bottom: 0.6rem; /* Extend padding on hover for dynamic underline effect */
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 3px; /* Thicker, more prominent underline */
+        background-color: #222; /* Underline color matches hover color */
+        border-radius: 2px; /* Rounded underline ends */
+        transition: width 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
+          bottom 0.3s ease-in-out; /* Custom bezier, bottom transition */
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+        bottom: -2px; /* Make underline slightly more prominent on hover */
+      }
+
+      .nav-button-desktop {
+        display: none; /* Hidden on mobile */
+      }
+
+      @media (min-width: 768px) {
+        .nav-button-desktop {
+          display: inline-block; /* Show on desktop */
+        }
+      }
+
+      /* Mobile Navigation Menu */
+      #mobileNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Less transparent mobile nav background */
+        backdrop-filter: blur(30px); /* Even stronger blur for mobile */
+        z-index: 101; /* Above fixed nav */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%); /* Slide off screen */
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother, custom bezier slide */
+        padding: 2rem; /* Added padding to mobile nav */
+      }
+
+      #mobileNav.open {
+        transform: translateX(0); /* Slide in when open */
+      }
+
+      .mobile-nav-close-btn {
+        position: absolute;
+        top: 2rem; /* Adjusted position */
+        right: 2rem; /* Adjusted position */
+        font-size: 2rem; /* Slightly smaller close button */
+        color: #555; /* Muted close button color */
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+        z-index: 102; /* Above mobile nav content */
+        opacity: 0.7; /* Reduced opacity */
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .mobile-nav-close-btn:hover {
+        opacity: 1; /* Full opacity on hover */
+        transform: scale(1.1); /* Subtle scale on hover */
+      }
+
+      .mobile-nav-close-icon {
+        width: 24px; /* Icon size */
+        height: 24px;
+        stroke: #555;
+        stroke-width: 2;
+        fill: none;
+        transition: stroke 0.3s ease-in-out;
+      }
+
+      .mobile-nav-close-btn:hover .mobile-nav-close-icon {
+        stroke: #333; /* Darker on hover */
+      }
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem; /* Increased spacing between mobile links */
+        padding: 2rem 0; /* Vertical padding for links area */
+      }
+
+      .mobile-nav-link {
+        font-family: "Poppins", sans-serif; /* Modern font for mobile too */
+        color: #2a2a2a; /* Deeper mobile link color */
+        font-size: 2rem; /* Larger mobile link font */
+        text-decoration: none;
+        font-weight: 500;
+        opacity: 0; /* For staggered animation */
+        transform: translateY(25px); /* Reduced translateY for animation */
+        transition: opacity 0.45s ease-out, transform 0.45s ease-out; /* Animation properties */
+      }
+
+      .mobile-nav-link.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-nav-separator {
+        width: 60px; /* Width of separator */
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.1); /* Light separator line */
+        margin: 1rem 0; /* Spacing around separator */
+        opacity: 0; /* Animate in with links */
+        transform: scaleX(0.8); /* Start slightly scaled down */
+        transition: opacity 0.45s ease-out 0.2s, transform 0.45s ease-out 0.2s; /* Delayed animation */
+      }
+
+      .mobile-nav-separator.animate-in {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      .mobile-nav-button {
+        padding-top: 1.2rem; /* Adjusted button padding */
+        padding-bottom: 1.2rem;
+        font-size: 1.1rem; /* Slightly larger button font */
+      }
+
+      body.mobile-nav-open {
+        overflow: hidden; /* Prevent body scroll when mobile nav is open */
+      }
+
+      /* ========================================================= */
+      /*                        HERO SECTION                       */
+      /* ========================================================= */
+      .hero-section {
+        position: relative; /* For absolute positioning of overlay */
+        overflow: hidden; /* Clip any overflow */
+        padding: 0;
+        margin: 0;
+      }
+
+      .hero-bg {
+        /* background-image: url("../fluids/platin-fluid-11.gif"); **REPLACE WITH A HIGH-QUALITY, STYLISH HERO BACKGROUND IMAGE** */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+        background-color: #f8f8fa82; /* Fallback background color */
+        padding-top: 18rem; /* Increased hero padding */
+        padding-bottom: 18rem;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1); /* Very subtle overlay */
+        mix-blend-mode: soft-light; /* Soft light blend mode for subtle effect */
+      }
+
+      /* ========================================================= */
+      /*                       STAT CARDS                          */
+      /* ========================================================= */
+      .stat-card {
+        background: rgba(255, 255, 255, 0.85); /* Slightly more opaque */
+        backdrop-filter: blur(14px); /* Slightly stronger blur */
+        border: 1px solid rgba(0, 0, 0, 0.08); /* Slightly darker border */
+        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          border-color 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more sophisticated transition */
+        border-radius: 0.2rem; /* Slightly rounded corners */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Slightly stronger shadow */
+        opacity: 0; /* For entrance animation */
+        transform: translateY(30px); /* For entrance animation */
+      }
+
+      .stat-card:hover {
+        transform: translateY(-6px); /* More pronounced hover effect */
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Stronger hover shadow */
+        border-color: rgba(0, 0, 0, 0.12); /* Slightly darker border on hover */
+      }
+
+      /* ========================================================= */
+      /*                        BUTTONS - BRILLIANT - OPTIMIZED     */
+      /* ========================================================= */
+      .button-primary {
+        padding: 0.6rem;
+        margin-bottom: 8px;
+        background-color: #1e1e1e;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 0.2rem;
+        border: none;
+        transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+          transform 0.2s ease-out,
+          box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        outline: none;
+        will-change: transform, box-shadow; /* Performance hint */
+      }
+
+      .button-primary:hover {
+        background-color: #2c2c2c;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+      }
+
+      .button-primary:focus {
+        box-shadow: 0 0 0 3px rgba(50, 50, 50, 0.3),
+          0 6px 15px rgba(0, 0, 0, 0.18);
+      }
+
+      .button-primary:active {
+        background-color: #151515;
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .button-primary::before {
+        /* Inner shadow */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.08);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+        will-change: opacity; /* Performance hint for inner shadow opacity */
+      }
+
+      .button-primary:hover::before,
+      .button-primary:active::before {
+        opacity: 1;
+      }
+
+      .button-primary::after {
+        /* Ripple */
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease-out,
+          transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) scale(0);
+        will-change: opacity, transform; /* Performance hint for ripple */
+      }
+
+      .button-primary:active::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+
+      .button-secondary {
+        padding: 0.6rem;
+        padding-top: 0;
+        padding-bottom: 0;
+        border: 1.8px solid #333; /* Shorthand border */
+        color: #333;
+        font-weight: 500;
+        border-radius: 0.3rem;
+        background-color: transparent;
+        transition: border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+          color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+          background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+          transform 0.2s ease-out,
+          box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        outline: none;
+        will-change: transform, box-shadow, border-color, color,
+          background-color; /* Comprehensive performance hint */
+      }
+
+      .button-secondary:hover {
+        border-color: #222;
+        color: #222;
+        background-color: rgba(255, 255, 255, 0.05);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+
+      .button-secondary:focus {
+        box-shadow: 0 0 0 3px rgba(50, 50, 50, 0.2),
+          0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+
+      .button-secondary:active {
+        border-color: #1a1a1a;
+        color: #1a1a1a;
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(0);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      }
+
+      .button-secondary::before {
+        /* Background Overlay */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.15);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.2, 1, 0.8, 1);
+        z-index: -1;
+        will-change: transform; /* Performance hint for background overlay */
+      }
+
+      .button-secondary:hover::before {
+        transform: scaleX(1);
+      }
+
+      /* ========================================================= */
+      /*                    VISION & MISSION SECTION               */
+      /* ========================================================= */
+      .vision-mission-section {
+        background-color: #fff;
+        opacity: 0; /* For entrance animation */
+        transform: translateY(30px); /* For entrance animation */
+      }
+
+      .vision-mission-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7rem; /* Increased gap */
+      }
+
+      @media (min-width: 992px) {
+        .vision-mission-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .vision-mission-card {
+        padding: 4rem; /* Increased padding */
+        border-radius: 0.2rem; /* Slightly rounded corners */
+        background: rgba(255, 255, 255, 0.9); /* More opaque card background */
+        backdrop-filter: blur(16px); /* Stronger blur */
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06); /* Slightly stronger shadow */
+        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+      }
+
+      .vision-mission-card:hover {
+        transform: translateY(-8px); /* More pronounced hover effect */
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1); /* Stronger hover shadow */
+      }
+
+      .vision-mission-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.5rem; /* Slightly larger title */
+        letter-spacing: 0.06em; /* Adjusted letter-spacing */
+        margin-bottom: 2rem; /* Increased margin */
+        color: #222; /* Match body text color */
+      }
+
+      .vision-mission-text {
+        color: #555; /* Muted text color */
+        font-size: 1.1rem; /* Slightly larger text */
+        line-height: 1.8;
+      }
+
+      /* ========================================================= */
+      /*                 ENTERPRISES SECTION                       */
+      /* ========================================================= */
+      .enterprises-section {
+        background-color: #f8f8fa; /* Match body background */
+        opacity: 0; /* For entrance animation */
+        transform: translateY(30px); /* For entrance animation */
+      }
+
+      .enterprises-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(180px, 1fr)
+        ); /* Slightly wider min-width */
+        gap: 3rem; /* Increased gap */
+        justify-items: center;
+      }
+
+      .enterprise-logo {
+        max-width: 100%;
+        height: auto;
+        opacity: 0.6; /* Slightly less opaque initially */
+        transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+      }
+
+      .enterprise-logo:hover {
+        opacity: 1; /* Full opacity on hover */
+        transform: scale(1.8); /* Slightly more scaling on hover */
+      }
+
+      /* ========================================================= */
+      /*          FUTURISTIC FOOTER - WHITE BLUR VERSION         */
+      /* ========================================================= */
+      .futuristic-footer-white {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.75
+        ); /* White semi-transparent background */
+        backdrop-filter: blur(12px); /* White blur effect */
+        color: #333; /* Darker text for white background */
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.03em;
+        font-family: "Roboto", sans-serif; /* Modern font */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow for white background */
+        border-top: 1.5px solid rgba(0, 0, 0, 0.08); /* Lighter border for white */
+      }
+
+      .futuristic-footer-white .container-tight {
+        position: relative; /* Ensure container is relative for absolute lines */
+        z-index: 1; /* Content above lines */
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two column grid */
+        align-items: center;
+        padding-bottom: 3rem; /* Space above the bottom line */
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.15); /* Dashed line separator - lighter */
+      }
+
+      @media (max-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 1fr; /* Stack on smaller screens */
+          text-align: center;
+        }
+        .footer-nav-area {
+          margin-top: 2rem; /* Space navigation below copyright on small screens */
+        }
+      }
+
+      .footer-copyright {
+        font-size: 0.9rem;
+        opacity: 0.75; /* Slightly less opaque copyright */
+        margin-bottom: 0; /* Remove default margin */
+        animation: fadeInCopyrightFuturisticWhite 1.2s ease-out 0.3s backwards; /* New animation name */
+        will-change: opacity, transform;
+      }
+
+      @keyframes fadeInCopyrightFuturisticWhite {
+        /* New animation keyframes */
+        from {
+          opacity: 0;
+          transform: translateY(8px); /* Slightly adjusted animation distance */
+        }
+        to {
+          opacity: 0.75;
+          transform: translateY(0);
+        }
+      }
+
+      .footer-nav {
+        display: flex;
+        justify-content: flex-end; /* Align to the right in grid */
+        gap: 2.5rem;
+        animation: fadeInUpNavFuturisticWhite 1.3s ease-out 0.4s backwards; /* New animation name */
+        will-change: opacity, transform;
+      }
+
+      @keyframes fadeInUpNavFuturisticWhite {
+        /* New animation keyframes */
+        from {
+          opacity: 0;
+          transform: translateY(
+            12px
+          ); /* Slightly adjusted animation distance */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-nav {
+          justify-content: center; /* Center nav on small screens */
+          flex-direction: column; /* Stack links on small screens */
+          gap: 1.5rem;
+        }
+      }
+
+      .footer-link {
+        color: #555; /* Darker link color for white background */
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease, transform 0.2s ease-out;
+        position: relative;
+        padding-bottom: 0.2rem;
+        overflow: hidden; /* Clip underline */
+      }
+
+      .footer-link::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          rgba(80, 180, 230, 0.8),
+          rgba(40, 130, 220, 0.6)
+        ); /* Slightly adjusted blue gradient for white */
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+      }
+
+      .footer-link:hover {
+        color: #222; /* Even darker on hover */
+        transform: translateY(-2px);
+      }
+
+      .footer-link:hover::before {
+        transform: scaleX(1);
+      }
+
+      /* Texture Overlay - Subtle Noise - Light Version */
+      .futuristic-footer-white .footer-texture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill-opacity='0.06' fill='%23ddd' d='M0 0h50v50H0V0zm50 50h50v50H50V50zm-50 50h50v50H0V50zm50-50h50v50H50V0z'/%3E%3C/svg%3E"); /* Lighter grey texture for white background */
+        opacity: 0.1;
+        pointer-events: none;
+      }
+
+      /* Futuristic Lines - Top, Bottom, Vertical - Adjusted for White */
+      .futuristic-footer-white .footer-line-top,
+      .futuristic-footer-white .footer-line-bottom,
+      .futuristic-footer-white .footer-line-vertical-left,
+      .futuristic-footer-white .footer-line-vertical-right {
+        position: absolute;
+        background: linear-gradient(
+          90deg,
+          rgba(80, 180, 230, 0.7),
+          rgba(40, 130, 220, 0.5)
+        ); /* Slightly adjusted blue gradient for white */
+        box-shadow: 0 0 8px rgba(80, 180, 230, 0.3); /* Softer glow for white */
+        pointer-events: none;
+      }
+
+      .futuristic-footer-white .footer-line-top {
+        top: 0;
+        left: 10%; /* Slightly reduced line length on white version */
+        right: 10%;
+        height: 1.5px; /* Thinner lines for white version */
+        transform: translateY(-4px); /* Adjusted position */
+      }
+
+      .futuristic-footer-white .footer-line-bottom {
+        bottom: 0;
+        left: 10%; /* Slightly reduced line length on white version */
+        right: 10%;
+        height: 1.5px; /* Thinner lines for white version */
+        transform: translateY(4px); /* Adjusted position */
+      }
+
+      .futuristic-footer-white .footer-line-vertical-left {
+        left: 1%; /* Adjusted position for white version */
+        top: 8%; /* Adjusted position for white version */
+        bottom: 8%; /* Adjusted position for white version */
+        width: 1.5px; /* Thinner lines for white version */
+        transform: translateX(-4px); /* Adjusted position */
+      }
+
+      .futuristic-footer-white .footer-line-vertical-right {
+        right: 1%; /* Adjusted position for white version */
+        top: 8%; /* Adjusted position for white version */
+        bottom: 8%; /* Adjusted position for white version */
+        width: 1.5px; /* Thinner lines for white version */
+        transform: translateX(4px); /* Adjusted position */
+      }
+
+      @media (max-width: 768px) {
+        .futuristic-footer-white .footer-line-top,
+        .futuristic-footer-white .footer-line-bottom {
+          left: 5%;
+          right: 5%;
+        }
+        .futuristic-footer-white .footer-line-vertical-left,
+        .futuristic-footer-white .footer-line-vertical-right {
+          display: none; /* Hide vertical lines on smaller screens */
+        }
+      }
+
+      /* ========================================================= */
+      /*                  SYSTEM STATUS BAR                        */
+      /* ========================================================= */
+      .system-status-bar {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(24px);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 0; /* Remove default padding to control it in container */
+        text-align: left; /* Align text to the left */
+        font-size: 0.75rem; /* Even smaller font for status bar */
+        color: #888;
+        z-index: 1000; /* Ensure it's always on top */
+      }
+
+      .system-status-bar .container-tight {
+        padding-top: 0.75rem; /* Adjusted padding, using container-tight for spacing */
+        padding-bottom: 0.75rem;
+      }
+
+      @media (max-width: 768px) {
+        .system-status-bar .container-tight {
+          padding-top: 0.5rem; /* Reduced padding on smaller screens */
+          padding-bottom: 0.5rem;
+          padding-left: 1rem;
+          padding-right: 1rem; /* Adjust horizontal padding on small screens */
+        }
+        .system-status-bar {
+          font-size: 0.7rem; /* Further reduce font size on very small screens */
+        }
+      }
+
+      .status-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        gap: 1.5rem; /* Gap between groups and time */
+      }
+
+      @media (max-width: 768px) {
+        .status-bar-content {
+          flex-direction: column; /* Stack status groups and time vertically on small screens */
+          align-items: flex-start; /* Align items to the start on small screens */
+          gap: 0.75rem; /* Reduced gap on smaller screens */
+        }
+      }
+
+      .status-group {
+        display: flex;
+        gap: 2rem; /* Gap between status items */
+        flex-wrap: wrap; /* Allow status items to wrap */
+      }
+
+      @media (max-width: 768px) {
+        .status-group {
+          gap: 1rem; /* Reduced gap on smaller screens */
+        }
+      }
+
+      .status-item {
+        display: flex;
+        align-items: baseline; /* Align label and value baseline */
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+
+      .status-label {
+        color: #777;
+        font-weight: 500; /* Slightly bolder label */
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        margin-right: 0.5rem;
+      }
+
+      .status-value {
+        color: #666;
+      }
+
+      .status-value.operational {
+        color: #22c55e; /* Green for operational */
+        transition: color 0.3s ease-in-out; /* Smooth transition for status change */
+      }
+
+      .dynamic-border {
+        position: relative;
+        padding-right: 1rem; /* Space for the border effect */
+      }
+
+      .dynamic-border::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: rgba(0, 0, 0, 0.1); /* Subtle border color */
+        opacity: 0.5; /* Reduced opacity for subtlety */
+      }
+
+      .utc-time {
+        font-family: "monospace", monospace; /* Monospace font for UTC time */
+        color: #555;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        opacity: 0.9; /* Slightly reduced opacity */
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- GIF Background -->
+    <div class="gif-bg" aria-hidden="true"></div>
+    <!-- aria-hidden for decorative elements -->
+    <!-- Lines Background -->
+    <div class="lines-bg" aria-hidden="true"></div>
+    <!-- aria-hidden for decorative elements -->
+
+    <!-- Mobile Navigation Menu -->
+    <div
+      id="mobileNav"
+      class="mobile-nav-menu"
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="mobileNavLabel"
+      hidden
+    >
+      <h2 id="mobileNavLabel" class="sr-only">Mobile Navigation Menu</h2>
+      <!-- Accessibility label for screen readers -->
+      <button
+        class="mobile-nav-close-btn"
+        onclick="toggleMobileNav()"
+        aria-label="Close Mobile Navigation"
+      >
+        <svg class="mobile-nav-close-icon" viewBox="0 0 24 24">
+          <path
+            d="M18 6L6 18M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <nav class="mobile-nav-links">
+        <div class="mobile-nav-separator" aria-hidden="true"></div>
+        <!-- Decorative separator -->
+        <a
+          href="#platform-section"
+          class="mobile-nav-link"
+          onclick="closeMobileNavOnClick()"
+          style="animation-delay: 0.1s"
+          >ᴘʟᴀᴛꜰᴏʀᴍ</a
+        >
+        <a
+          href="#solutions-section"
+          class="mobile-nav-link"
+          onclick="closeMobileNavOnClick()"
+          style="animation-delay: 0.2s"
+          >ꜱᴏʟᴜᴛɪᴏɴꜱ</a
+        >
+        <a
+          href="#contracts-section"
+          class="mobile-nav-link"
+          onclick="closeMobileNavOnClick()"
+          style="animation-delay: 0.3s"
+          >ᴄᴏɴᴛʀᴀᴄᴛꜱ</a
+        >
+        <a
+          href="#vision-mission-section"
+          class="mobile-nav-link"
+          onclick="closeMobileNavOnClick()"
+          style="animation-delay: 0.4s"
+          >ᴠɪꜱɪᴏɴ & ᴍɪꜱꜱɪᴏɴ</a
+        >
+        <a
+          href="#enterprises-section"
+          class="mobile-nav-link"
+          onclick="closeMobileNavOnClick()"
+          style="animation-delay: 0.5s"
+          >ᴇɴᴛᴇʀᴘʀɪꜱᴇꜱ</a
+        >
+        <button
+          class="px-6 py-3 button-primary mt-2 mobile-nav-link mobile-nav-button"
+          onclick="closeMobileNavOnClick()"
+          style="animation-delay: 0.6s"
+        >
+          ɪɴɪᴛɪᴀʟɪᴢᴇ
+        </button>
+      </nav>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="luxurious-nav">
+      <div class="nav-container">
+        <a
+          href="/"
+          class="nav-logo bebas-neue"
+          aria-label="Feynman Technologies Homepage"
+          >ＦＥＹＮＭＡＮ</a
+        >
+        <!-- Aria label for logo link -->
+        <button
+          class="nav-mobile-button"
+          onclick="toggleMobileNav()"
+          aria-label="Toggle Mobile Navigation"
+          aria-expanded="false"
+          id="mobileNavButton"
+        >
+          <svg class="nav-mobile-icon" viewBox="0 0 24 24">
+            <path
+              d="M3 19h18M3 12h18M3 5h18"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div class="nav-links-desktop">
+          <a href="#platform-section" class="nav-link">ᴘʟᴀᴛꜰᴏʀᴍ </a>
+          <a href="#solutions-section" class="nav-link">ꜱᴏʟᴜᴛɪᴏɴꜱ</a>
+          <a href="#contracts-section" class="nav-link">ᴄᴏɴᴛʀᴀᴄᴛꜱ </a>
+          <a href="#vision-mission-section" class="nav-link"
+            >ᴠɪꜱɪᴏɴ & ᴍɪꜱꜱɪᴏɴ</a
+          >
+          <a href="#enterprises-section" class="nav-link">ᴇɴᴛᴇʀᴘʀɪꜱᴇꜱ</a>
+        </div>
+        <button class="px-2 py-1 button-primary nav-button-desktop">
+          ɪɴɪᴛɪᴀʟɪᴢᴇ
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero-section" class="hero-section section-padding">
+      <!-- Iframe Container for Background GIF - Ensures no overflow and correct positioning -->
+      <div
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          z-index: -42;
+          pointer-events: none;
+        "
+      >
+        <iframe
+          src="../fluids/platin-fluid-12.gif"
+          width="100%"
+          height="100%"
+          style="border: none; display: block"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div
+          class="container-tight relative z-10 px-6 md:px-0 text-center md:text-left"
+        >
+          <h1
+            class="hero-title animate__animated animate__fadeInUp"
+            style="animation-delay: 0.3s"
+          >
+            SECURE<br />
+            THE FUTURE
+          </h1>
+          <div
+            class="hero-divider animate__animated animate__fadeInUp"
+            style="
+              animation-delay: 0.6s;
+              margin-left: auto;
+              margin-right: auto;
+              margin-left: 0;
+              margin-right: 0;
+            "
+          ></div>
+          <p
+            class="hero-subtitle animate__animated animate__fadeInUp max-w-2xl mx-auto md:mx-0"
+            style="animation-delay: 0.9s"
+          >
+            Advanced government infrastructure powered by the cutting-edge
+            technology.
+          </p>
+          <div
+            class="hero-buttons flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center md:justify-start animate__animated animate__fadeInUp"
+            style="animation-delay: 1.2s"
+          >
+            <button class="button-primary">REQUEST ACCESS</button>
+            <button class="button-secondary">VIEW CAPABILITIES</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Grid -->
+    <section
+      id="stats-section"
+      class="py-24 relative overflow-hidden section-padding"
+    >
+      <div class="container-tight px-6 md:px-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="stat-card p-8 animate__animated animate__fadeInUp"
+            data-animation-delay="0.2s"
+          >
+            <div class="text-sm tracking-[0.2em] text-gray-500 mb-4 uppercase">
+              ACTIVE CONTRACTS
+            </div>
+            <div class="text-5xl font-bold bebas-neue text-black">247</div>
+          </div>
+          <div
+            class="stat-card p-8 animate__animated animate__fadeInUp"
+            data-animation-delay="0.4s"
+          >
+            <div class="text-sm tracking-[0.2em] text-gray-500 mb-4 uppercase">
+              SECURITY RATING
+            </div>
+            <div class="text-5xl font-bold bebas-neue text-black">100%</div>
+          </div>
+          <div
+            class="stat-card p-8 animate__animated animate__fadeInUp"
+            data-animation-delay="0.6s"
+          >
+            <div class="text-sm tracking-[0.2em] text-gray-500 mb-4 uppercase">
+              SYSTEM UPTIME
+            </div>
+            <div class="text-5xl font-bold bebas-neue text-black">99.99%</div>
+          </div>
+          <div
+            class="stat-card p-8 animate__animated animate__fadeInUp"
+            data-animation-delay="0.8s"
+          >
+            <div class="text-sm tracking-[0.2em] text-gray-500 mb-4 uppercase">
+              THREAT LEVEL
+            </div>
+            <div class="text-5xl font-bold bebas-neue text-green-600">LOW</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section
+      id="vision-mission-section"
+      class="vision-mission-section section-padding animate__animated animate__fadeInUp"
+      data-animation-delay="0.2s"
+    >
+      <div class="container-tight px-6 md:px-0">
+        <div class="text-center mb-16">
+          <h2 class="bebas-neue text-4xl md:text-5xl font-bold tracking-tight">
+            Our Core Principles
+          </h2>
+          <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
+        </div>
+        <div class="vision-mission-grid">
+          <div
+            class="vision-mission-card animate__animated animate__fadeInUp"
+            data-animation-delay="0.4s"
+          >
+            <h3 class="vision-mission-title">Our Vision</h3>
+            <p class="vision-mission-text">
+              To be a global leader in building advanced technology and robust
+              infrastructure for nations, ensuring a future where progress
+              benefits every citizen. We envision a world where technology
+              empowers governments to enhance the lives of their people, foster
+              sustainable development, and operate with efficiency and
+              unwavering trust.
+            </p>
+          </div>
+          <div
+            class="vision-mission-card animate__animated animate__fadeInUp"
+            data-animation-delay="0.6s"
+          >
+            <h3 class="vision-mission-title">Our Mission</h3>
+            <p class="vision-mission-text">
+              To pioneer and deploy cutting-edge technologies and build
+              resilient infrastructure solutions tailored to the unique needs of
+              each nation. We are dedicated to innovation, integrity, and
+              partnership, collaborating closely to construct strong foundations
+              for societal advancement. Our mission is to empower governments to
+              build thriving nations, improve quality of life, and secure a
+              prosperous future for their people.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enterprises Section -->
+    <section
+      id="enterprises-section"
+      class="enterprises-section section-padding animate__animated animate__fadeInUp"
+      data-animation-delay="0.2s"
+    >
+      <div class="container-tight px-6 md:px-0">
+        <div class="text-center mb-16">
+          <h2 class="bebas-neue text-4xl md:text-5xl font-bold tracking-tight">
+            Trusted by Leading Enterprises
+          </h2>
+          <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
+          <p class="text-gray-600 mt-4">
+            We partner with world-class organizations to deliver exceptional
+            solutions.
+          </p>
+        </div>
+        <div class="enterprises-grid">
+          <div>
+            <img
+              src="logos/adobe.svg"
+              alt="Enterprise Logo 1"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.3s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/anthropic.svg"
+              alt="Enterprise Logo 2"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.4s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/applitools.svg"
+              alt="Enterprise Logo 3"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.5s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/claude.svg"
+              alt="Enterprise Logo 4"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.6s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/google-gemini.svg"
+              alt="Enterprise Logo 5"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.7s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/hugging-face.svg"
+              alt="Enterprise Logo 6"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.8s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/mistral-ai.svg"
+              alt="Enterprise Logo 7"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="0.9s"
+            />
+          </div>
+          <div>
+            <img
+              src="logos/perplexity.svg"
+              alt="Enterprise Logo 8"
+              class="enterprise-logo animate__animated animate__fadeInUp"
+              data-animation-delay="1.0s"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="futuristic-footer-white">
+      <div class="container-tight px-6">
+        <div class="footer-grid">
+          <div class="footer-copyright-area">
+            <p class="footer-copyright">
+              © 2024 Feynman Technologies. All rights reserved.
+            </p>
+          </div>
+          <div class="footer-nav-area">
+            <nav class="footer-nav">
+              <a href="#" class="footer-link">Terms of Service</a>
+              <a href="#" class="footer-link">Privacy Policy</a>
+              <a href="#" class="footer-link">Contact</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="footer-texture"></div>
+      <div class="footer-line-top"></div>
+      <div class="footer-line-bottom"></div>
+      <div class="footer-line-vertical-left"></div>
+      <div class="footer-line-vertical-right"></div>
+    </footer>
+
+    <!-- System Status Bar -->
+    <div class="fixed bottom-0 w-full system-status-bar">
+      <div class="container-tight px-6 py-3">
+        <div class="status-bar-content">
+          <div class="status-group">
+            <div class="status-item dynamic-border">
+              <span class="status-label">System Status:</span>
+              <span class="status-value operational">Operational</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Active Nodes:</span>
+              <span class="status-value">724</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Response Time:</span>
+              <span class="status-value">5ms</span>
+            </div>
+          </div>
+          <div class="utc-time" id="utc-time">UTC 00:00:00</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

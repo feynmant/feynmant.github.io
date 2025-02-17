@@ -1,0 +1,54 @@
+.blur-background {
+  /* @apply rounded-3xl overflow-hidden shadow-4xl transition-shadow duration-1200 ease-out hover:shadow-5xl transform hover:scale-101 bg-clip-padding backdrop-filter-none bg-opacity-10 bg-white/10; */
+  /* border-top: 1px solid var(--celestial-gold); */
+  position: relative;
+  /* backdrop-filter: blur(0px); */
+  background-color: #aab3ad54; /* Dark base */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noiseFilter' x='0%' y='0%' width='100%' height='100%' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfgImage result='noise' x='0' y='0' width='100%' height='100%' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAFElEQVQYV2P4//8/w38GIAXDIBKE0DHxgljNBAAAAABJRU5ErkJggg=='/%3E%3CfeTurbulence result='fractalNoise' baseFrequency='0.9' numOctaves='5' seed='2' stitchTiles='stitch' type='fractalNoise'%3E%3C/feTurbulence%3E%3CfeColorMatrix result='noisetrans' colorInterpolationFilters='sRGB' in='fractalNoise' type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 -1'/%3E%3CfeComponentTransfer in='noisetrans' result='componentTransfer' colorInterpolationFilters='sRGB'%3E%3CfeFuncA type='table' tableValues='0 0.4 1 1'/%3E%3CfeFuncR type='identity' tableValues='0 0.99609375 1'/%3E%3CfeFuncG type='identity' tableValues='0 0.99609375 1'/%3E%3CfeFuncB type='identity' tableValues='0 0.99609375 1'/%3E%3C/feComponentTransfer%3E%3CfeBlend mode='multiply' in2='componentTransfer' in='SourceGraphic' result='blend'%3E%3C/feBlend%3E%3CfeColorMatrix result='colortrans' colorInterpolationFilters='sRGB' type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%' height='100%' fill='hsla(0,0%25,0%25,1)' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); /* Black and white noise texture */
+  animation: noiseAnimation 2s steps(10) infinite; /* Animate the noise */
+  opacity: 0.95; /* Slightly less opaque texture */
+  backdrop-filter: none;
+  /* opacity: 0.1; */
+  background-color: rgba(255, 255, 255, 0.1);
+  /* border-top: 1px solid var(--celestial-gold); */
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+/* Astonishing Text Selection with Dark Gray */
+::selection {
+  background-color: #333333; /* Dark gray base color */
+  color: white;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.3); /* Subtle white text shadow for lift */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15); /* Very subtle white inner border */
+  /* Optional: Very faint pulse animation for inner border */
+  animation: subtlePulseBorder 2s ease-in-out infinite alternate;
+}
+
+::-moz-selection {
+  background-color: #333333;
+  color: white;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  animation: subtlePulseBorder 2s ease-in-out infinite alternate;
+}
+
+@keyframes subtlePulseBorder {
+  0% {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  }
+  100% {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+  } /* Slightly thicker and brighter border */
+}
+
+/* Permanent Highlight Class */
+.permanent-highlight {
+  background-color: #333333; /* Dark gray background, same as selection */
+  color: white; /* White text color, same as selection */
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.3); /* Subtle white text shadow, same as selection */
+  padding: 2px 5px; /* Optional: Add some padding around the highlighted text */
+  /* border-radius: 2px; Optional: Slightly rounded corners for highlight */
+  box-decoration-break: clone; /* Important for inline highlights spanning lines */
+  -webkit-box-decoration-break: clone; /* For Safari */
+}
