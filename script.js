@@ -1,63 +1,38 @@
 // JavaScript for Mobile Navigation
 const mobileNav = document.getElementById("mobileNav");
-const mobileNavButton = document.getElementById("mobileNavButton");
+const mobileNavButton = document.getElementById("mobileNavButton"); // Now the burger button
 const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-const mobileNavSeparators = document.querySelectorAll(".mobile-nav-separator"); // Select separators
-const nav = document.querySelector(".luxurious-nav"); // Select the navigation element
+const mobileNavSeparators = document.querySelectorAll(".mobile-nav-separator");
+const nav = document.querySelector(".luxurious-nav");
 
 function toggleMobileNav() {
-  const isOpen = mobileNav.classList.toggle("open");
+  const isOpen = !mobileNav.classList.contains("open"); // Check for 'open' class to determine state
+
+  mobileNav.classList.toggle("open");
+  mobileNavButton.classList.toggle("open");
   mobileNavButton.setAttribute("aria-expanded", isOpen.toString());
 
   if (isOpen) {
-    mobileNav.removeAttribute("hidden");
-    animateMobileNavOpen(); // Call combined open animation
     document.body.classList.add("mobile-nav-open");
   } else {
-    animateMobileNavClose(); // Call combined close animation
-    setTimeout(() => {
-      mobileNav.setAttribute("hidden", "");
-    }, 500);
     document.body.classList.remove("mobile-nav-open");
   }
 }
 
-function animateMobileNavOpen() {
-  mobileNavLinks.forEach((link, index) => {
-    link.classList.add("animate-in"); // Add class for animation
-  });
-  mobileNavSeparators.forEach((separator, index) => {
-    separator.classList.add("animate-in"); // Animate separators in too
-  });
-}
-
-function animateMobileNavClose() {
-  mobileNavLinks.forEach((link, index) => {
-    link.classList.remove("animate-in"); // Remove class to trigger reverse animation (CSS transition)
-  });
-  mobileNavSeparators.forEach((separator, index) => {
-    separator.classList.remove("animate-in"); // Animate separators out
-  });
-}
-
 function closeMobileNavOnClick() {
   if (mobileNav.classList.contains("open")) {
-    // Only close if it's open
-    toggleMobileNav(); // Use existing toggle function to close
+    toggleMobileNav();
   }
 }
 
-// Function to handle scroll event and add class to nav
 function handleScroll() {
   if (window.scrollY > 50) {
-    // Example scroll threshold, adjust as needed
     nav.classList.add("nav-scrolled");
   } else {
     nav.classList.remove("nav-scrolled");
   }
 }
 
-// Attach scroll event listener
 window.addEventListener("scroll", handleScroll);
 
 // Section Entrance Animations using Intersection Observer
